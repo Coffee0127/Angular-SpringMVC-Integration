@@ -1,4 +1,8 @@
+<a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Index</a>
+<a [routerLink]="['/pages/page1']" routerLinkActive="active">Page1</a>
+<a [routerLink]="['/pages/page2']" routerLinkActive="active">Page2</a>
+<router-outlet></router-outlet>
+<hr />
 <pre>
   {{ data | async | json }}
 </pre>
-
