@@ -43,19 +43,26 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.4</version>
+                <version>1.5</version>
+                <configuration>
+                    <!-- 設定了 workingDirectory，因此 Maven 預設會從 workingDirectory 下尋找 node & yarn -->
+                    <installDirectory>${project.basedir}</installDirectory>
+                    <workingDirectory>front</workingDirectory>
+                </configuration>
                 <executions>
                     <execution>
                         <id>install node and yarn</id>
                         <goals>
+                            <!--  Angular CLI requires npm -->
                             <goal>install-node-and-npm</goal>
                             <goal>install-node-and-yarn</goal>
                         </goals>
                         <phase>generate-sources</phase>
                         <configuration>
-                            <nodeVersion>v6.10.0</nodeVersion>
+                            <nodeVersion>v6.11.3</nodeVersion>
                             <npmVersion>3.10.10</npmVersion>
-                            <yarnVersion>v0.22.0</yarnVersion>
+                            <!-- Yarn 1.0.0 將執行檔移動至 yarn/yarn-<version>/bin/yarn，暫時先用 v0.28.4 -->
+                            <yarnVersion>v0.28.4</yarnVersion>
                         </configuration>
                     </execution>
                     <execution>
@@ -63,11 +70,7 @@
                         <goals>
                             <goal>yarn</goal>
                         </goals>
-                        <configuration>
-                            <!-- 設定了 workingDirectory，因此Maven預設會從 workingDirectory 下尋找 node & yarn -->
-                            <installDirectory>${project.basedir}</installDirectory>
-                            <workingDirectory>front</workingDirectory>
-                        </configuration>
+                        <phase>generate-sources</phase>
                     </execution>
                     <execution>
                         <id>ng build</id>
@@ -76,8 +79,6 @@
                         </goals>
                         <phase>generate-sources</phase>
                         <configuration>
-                            <installDirectory>${project.basedir}</installDirectory>
-                            <workingDirectory>front/</workingDirectory>
                             <!-- https://github.com/angular/angular-cli/issues/5768#issuecomment-292974135 -->
                             <arguments>run ng build -- --prod --base-href /${app.context.name}/</arguments>
                         </configuration>
