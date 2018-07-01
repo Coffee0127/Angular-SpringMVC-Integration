@@ -43,7 +43,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.5</version>
+                <version>1.6</version>
                 <configuration>
                     <!-- 設定了 workingDirectory，因此 Maven 預設會從 workingDirectory 下尋找 node & yarn -->
                     <installDirectory>${project.basedir}</installDirectory>
@@ -59,10 +59,9 @@
                         </goals>
                         <phase>generate-sources</phase>
                         <configuration>
-                            <nodeVersion>v6.11.3</nodeVersion>
-                            <npmVersion>3.10.10</npmVersion>
-                            <!-- Yarn 1.0.0 將執行檔移動至 yarn/yarn-<version>/bin/yarn，暫時先用 v0.28.4 -->
-                            <yarnVersion>v0.28.4</yarnVersion>
+                            <nodeVersion>v10.0.0</nodeVersion>
+                            <npmVersion>6.1.0</npmVersion>
+                            <yarnVersion>v1.8.0</yarnVersion>
                         </configuration>
                     </execution>
                     <execution>
