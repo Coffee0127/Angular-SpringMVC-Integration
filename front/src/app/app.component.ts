@@ -1,20 +1,17 @@
-import { Component } from '@angular/core';
-import { Http, Response } from '@angular/http';
-
-import 'rxjs/Rx';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   data: any;
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.data = this.http.get('/api/cars/find')
-      .map((response: Response) => response.json());
+    this.data = this.http.get('/api/cars/find');
   }
 }

@@ -1,14 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, RequestOptions } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { APIInterceptor } from './api-interceptor';
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { Page1Component } from './pages/page1/page1.component';
 import { Page2Component } from './pages/page2/page2.component';
-
-import { CustomRequestOptions } from './custom-request-options';
 
 @NgModule({
   declarations: [
@@ -19,10 +17,16 @@ import { CustomRequestOptions } from './custom-request-options';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [{ provide: RequestOptions, useClass: CustomRequestOptions }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: APIInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
