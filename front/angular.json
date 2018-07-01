@@ -36,12 +36,10 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }]
             }
           }
         },
@@ -90,8 +88,8 @@
       }
     },
     "sample-project-e2e": {
-      "root": "",
-      "sourceRoot": "e2e",
+      "root": "e2e/",
+      "sourceRoot": "",
       "projectType": "application",
       "architect": {
         "e2e": {
